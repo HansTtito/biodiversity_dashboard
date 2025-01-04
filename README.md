@@ -1,4 +1,4 @@
-# Shiny Biodiversity Visualization App
+# Shiny Biodiversity Dashboard
 
 ## Description
 
