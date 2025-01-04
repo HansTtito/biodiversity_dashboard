@@ -22,6 +22,13 @@ The project uses data from the Global Biodiversity Information Facility (GBIF) a
    git clone https://github.com/HansTtito/appsilon_test.git
 ```
 
+2. Run the app directly in R
+
+```bash
+   shiny::runApp()
+```
+
+
 ## Usage
 
 - Species Search: Users can search for species using their common or scientific name in the search field. As they type, matching results will be displayed.
