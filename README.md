@@ -1,54 +1,56 @@
 # Shiny Biodiversity Visualization App
 
-## Descripción
+## Description
 
-Esta aplicación Shiny permite visualizar observaciones de especies de biodiversidad en Polonia. Los usuarios pueden buscar especies por su nombre vulgar o científico, y luego visualizar sus observaciones en un mapa interactivo. También pueden explorar una línea de tiempo que muestra cuándo fueron observadas las especies seleccionadas.
+This Shiny app allows the visualization of biodiversity species observations in Poland. Users can search for species by their common or scientific name, and then view their observations on an interactive map. They can also explore a timeline showing when the selected species were observed.
 
-El proyecto utiliza datos de la Global Biodiversity Information Facility (GBIF) y está diseñado para ser una herramienta interactiva, fácil de usar y optimizada para grandes volúmenes de datos.
+The project uses data from the Global Biodiversity Information Facility (GBIF) and is designed to be an interactive, user-friendly tool optimized for handling large datasets.
 
-## Requisitos Técnicos
+## Technical Requirements
 
-- **R** (versión 4.0 o superior)
-- **Shiny**: Para la creación de la aplicación web interactiva.
-- **leaflet**: Para visualizar las observaciones de especies en un mapa.
-- **dplyr**: Para el procesamiento de los datos.
-- **plotly**: Para la visualización de la línea de tiempo de observaciones.
+- **R** (version 4.0 or higher)
+- **Shiny**: For creating the interactive web app.
+- **leaflet**: For visualizing species observations on a map.
+- **dplyr**: For data processing.
+- **plotly**: For visualizing the observation timeline.
 
-## Instalación
+## Installation
 
-1. Clona el repositorio en tu máquina local:
+1. Clone the repository to your local machine:
 
 ```bash
    git clone https://github.com/HansTtito/appsilon_test.git
 ```
 
-Uso
-- Búsqueda de Especies: Los usuarios pueden buscar especies utilizando su nombre común o científico en el campo de búsqueda. A medida que escriben, se mostrarán resultados coincidentes.
-- Visualización en el Mapa: Una vez seleccionada una especie, la aplicación mostrará las observaciones de la especie en un mapa interactivo, con los puntos representando las ubicaciones de las observaciones.
-- Línea de Tiempo de Observaciones: Al seleccionar una especie, se generará una línea de tiempo que muestra las fechas en los que las observaciones fueron registradas.
+## Usage
 
-## Estructura del Proyecto
+- Species Search: Users can search for species using their common or scientific name in the search field. As they type, matching results will be displayed.
+- Map Visualization: Once a species is selected, the app will display the species' observations on an interactive map, with points representing the locations of the observations.
+- Observation Timeline: Upon selecting a species, a timeline will be generated showing the dates when the observations were recorded.
 
-### El proyecto está organizado de la siguiente manera:
+## Project Structure
 
-- ui.R: Contiene la interfaz de usuario de la aplicación.
-- server.R: Contiene la lógica de servidor de la aplicación.
-- modules: Carpeta que contiene los módulos de Shiny para descomponer funcionalidades independientes (por ejemplo, búsqueda de especies, visualización del mapa).
-- data: Carpeta que contiene los datos procesados y cualquier archivo adicional que se utilice en la aplicación.
-- tests: Carpeta que contiene pruebas unitarias para las funciones clave.
-- README.md: Este archivo, que proporciona una descripción del proyecto y cómo usarlo.
+### The project is organized as follows:
 
-### Funcionalidades
+- ui.R: Contains the user interface of the app.
+- server.R: Contains the server logic of the app.
+- modules: Folder containing Shiny modules to break down independent functionalities (e.g., species search, map visualization).
+- data: Folder containing processed data used in the app.
+- tests: Folder containing unit tests for key functions.
+- README.md: This file, which provides a description of the project and instructions on how to use it.
 
-- Búsqueda de Especies: Los usuarios pueden buscar especies por su nombre vulgar o científico, y los resultados se actualizan dinámicamente.
-- Visualización en el Mapa: Utiliza leaflet para mostrar las observaciones geolocalizadas en un mapa interactivo.
-- Línea de Tiempo: Muestra una línea de tiempo con las observaciones de la especie seleccionada.
-- Optimización: Se han implementado técnicas para asegurar que la aplicación se cargue rápidamente, incluso con grandes conjuntos de datos.
+### Features
 
-### Módulos
+- Species Search: Users can search for species by their common or scientific name, and the results are updated dynamically.
+- Map Visualization: Uses leaflet to display geolocated observations on an interactive map.
+- Timeline: Displays a timeline with observations of the selected species.
+- Optimization: Techniques have been implemented to ensure the app loads quickly, even with large datasets.
 
-La aplicación está organizada utilizando módulos de Shiny para mejorar la modularidad y reutilización del código. Los módulos incluyen:
+### Modules
 
-- module_search_species.R: Módulo para manejar la búsqueda de especies.
-- module_map.R: Módulo para la visualización del mapa.
-- module_timeline.R: Módulo para generar la línea de tiempo de las observaciones.
+The app is organized using Shiny modules to improve code modularity and reusability. The modules include:
+
+- search_module.R: Module for handling species search.
+- map_module.R: Module for visualizing the map.
+- timeline_module.R: Module for generating the observation timeline.
+- process_country_module.R: Module for finding the database to be used in the app.
