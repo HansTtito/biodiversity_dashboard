@@ -1,0 +1,179 @@
+/* Estilos generales */
+body {
+  background-color: #1a1b1e;
+  color: #e4e6eb;
+}
+
+/* Título */
+.title-panel {
+  background-color: #25262b;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #3498db;
+}
+
+.title-panel h2 {
+  color: #ffffff;
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+/* Contenido principal */
+.main-content {
+  padding: 1rem;
+}
+
+/* Tarjeta de búsqueda */
+.search-container {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 300px;
+  background-color: rgba(37, 38, 43, 0.8);
+  backdrop-filter: blur(8px);
+  border-radius: 8px;
+  z-index: 1000;
+  padding: 0; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  cursor: default; 
+}
+
+.drag-handle {
+  padding: 0.5rem;
+  margin: -1rem -1rem 0.5rem -1rem;
+  background-color: rgba(52, 152, 219, 0.2);
+  border-radius: 8px 8px 0 0;
+  cursor: move;
+  user-select: none;
+  font-size: 0.9rem;
+  color: #e4e6eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drag-handle:hover {
+  background-color: rgba(52, 152, 219, 0.3);
+}
+
+
+/* Collapse button styles */
+.collapse-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.collapse-button i {
+  color: #e4e6eb;
+  font-size: 1rem;
+}
+
+.collapse-button:hover {
+  opacity: 0.8;
+}
+
+/* Collapsed state */
+.search-container.collapsed {
+  padding: 0;
+  background-color: rgba(37, 38, 43, 0.5);
+}
+
+.search-container.collapsed .drag-handle {
+  margin: 0;
+  border-radius: 8px;
+}
+
+.search-container.collapsed .collapse-button {
+  position: relative;
+  display: block;
+  text-align: center;
+  padding: 0;
+}
+
+/* Search content */
+.search-content {
+  margin-top: 1rem;
+}
+
+.search-container label {
+  display: block;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.search-container .form-group {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.search-container .selectize-control {
+  text-align: left;
+  margin: 0 auto;
+}
+
+.search-container .btn {
+  margin: 0 auto;
+  display: block;
+}
+
+/* Contenedor del mapa */
+.map-container {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Elementos de formulario */
+.selectize-input,
+.form-control {
+    background-color: #2c2e33 !important;
+    border: 1px solid #3a3d44 !important;
+    color: #e4e6eb !important;
+    border-radius: 6px;
+}
+
+.selectize-dropdown {
+    background-color: #2c2e33 !important;
+    color: #e4e6eb !important;
+}
+
+.selectize-dropdown .option.active {
+    background-color: #3498db !important;
+}
+
+/* Botones */
+.btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+/* Timeline */
+.timeline-container {
+    background: #25262b;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .search-container {
+        width: 95%;
+        top: 10px;
+    }
+}
+
+
