@@ -21,5 +21,6 @@ El proyecto utiliza datos de la Global Biodiversity Information Facility (GBIF) 
 1. Clona el repositorio en tu máquina local:
 
 ```bash
-   git clone https://github.com/usuario/repositorio.git
+   git clone https://github.com/HansTtito/appsilon_test.git
 ```
+
