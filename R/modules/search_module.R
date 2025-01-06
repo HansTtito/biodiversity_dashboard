@@ -64,15 +64,6 @@ searchModule <- function(input, output, session, country_list) {
                grepl(searchTerm, vernacularName, ignore.case = TRUE)) %>%
       distinct(id, longitudeDecimal, latitudeDecimal, eventDate, scientificName, vernacularName, .keep_all = TRUE)
     
-    if (nrow(filtered_data) < 1) {
-      showModal(modalDialog(
-        title = "Error",
-        "Specie not found in that Country",
-        easyClose = TRUE,
-        footer = NULL
-      ))
-      return(NULL)
-    }
     
     filtered_data_reactive(filtered_data)
   })
