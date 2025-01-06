@@ -30,10 +30,6 @@ searchModule <- function(input, output, session, country_list) {
     updateSelectizeInput(session, "search_country", 
                          choices = country_list,
                          selected = 'Poland')
-    
-    updateSelectizeInput(session, "search_specie", 
-                         choices = NULL,
-                         selected = NULL)
   })
   
   # Read country data
