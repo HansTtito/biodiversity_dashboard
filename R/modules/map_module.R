@@ -1,4 +1,4 @@
-library(leaflet)
+suppressWarnings(library(leaflet))
 suppressWarnings(library(dplyr))
 
 

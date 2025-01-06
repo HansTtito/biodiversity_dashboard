@@ -1,10 +1,11 @@
+suppressWarnings(library(lubridate))
 suppressWarnings(library(plotly))
-library(lubridate)
+
 
 timelineModuleUI <- function(id) {
   ns <- NS(id)
   tagList(
-    plotlyOutput(ns("timeline"), height = "600px")
+    uiOutput(ns("timeline_or_message"), height = "600px")
   )
 }
 
@@ -12,26 +13,44 @@ timelineModule <- function(input, output, session, observations) {
   
   ns <- session$ns
   
+  output$timeline_or_message <- renderUI({
+    
+    if (is.null(observations()) || nrow(observations()) == 0) {
+      div(
+        style = "height: 600px; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #2c3e50;",
+      )
+      
+    } else {
+      
+      print(head(observations()))
+      print(unique(observations()$scientificName))
+      
+      tagList(
+        h2(paste0("Observation Timeline for ", unique(observations()$scientificName)), style = "color: white; text-align: center;"),
+        plotlyOutput(ns("timeline"), height = "600px")
+      )
+    }
+  })
+  
   observe({
+    
     req(observations())
     
-    # Processing data
+    # Procesamiento de datos
     filtered_data <- observations() %>%
-      mutate(observationDate = ymd(eventDate))%>%
+      mutate(observationDate = ymd(eventDate)) %>%
       reframe(individualCount = sum(individualCount, na.rm = TRUE), .by = c(observationDate, scientificName))
     
-    species_name <- ifelse(
-      all(is.na(filtered_data$scientificName)), 
-      unique(filtered_data$vernacularName), 
-      unique(filtered_data$scientificName)
-    )
-    
-    # Time line plot
+    if (nrow(filtered_data) == 0) {
+      output$timeline <- NULL # Ocultar el gráfico si no hay datos
+      return(NULL)
+    }
+
+    # Gráfico de la línea de tiempo
     output$timeline <- renderPlotly({
       
       req(filtered_data)
-      
-      library(plotly)
+      print(head(filtered_data))
       
       plot_ly(
         filtered_data, 
@@ -47,20 +66,19 @@ timelineModule <- function(input, output, session, observations) {
       ) %>%
         layout(
           title = list(
-            text = paste("Observation Timeline for", species_name),
-            font = list(
-              size = 24,
-              color = "darkblue",
-              family = "Arial, sans-serif"
-            ),
-            y = 0.97
+            text = "",  # Vacío para evitar el título estándar
+            font = list(size = 16, color = "transparent"), # Hacer el título invisible
+            y = 0.97,
+            x = 0.5,
+            xanchor = "center",
+            yanchor = "top"
           ),
           xaxis = list(title = "Date"),
           yaxis = list(title = "Observation Count"),
           bargap = 0.2
-        )
-      
-      
+        ) 
     })
+    
+    
   })
 }

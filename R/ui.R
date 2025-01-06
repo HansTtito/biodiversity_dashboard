@@ -1,4 +1,3 @@
-library(shiny)
 source("R/modules/map_module.R")
 source("R/modules/timeline_module.R")
 source("R/modules/search_module.R")
@@ -48,7 +47,7 @@ ui <- fluidPage(
               # Timeline container
               
               div(class = "card timeline-container",
-                  timelineModuleUI("timeline")
+                  timelineModuleUI("timeline_or_message")
               )
           )
       )

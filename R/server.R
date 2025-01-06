@@ -1,4 +1,3 @@
-library(shiny)
 
 server <- function(input, output, session) {
 
@@ -6,6 +5,6 @@ server <- function(input, output, session) {
   
   callModule(mapModule, "map_or_message", observations = filtered_data_reactive)
   
-  callModule(timelineModule, "timeline", observations = filtered_data_reactive)
+  callModule(timelineModule, "timeline_or_message", observations = filtered_data_reactive)
   
 }

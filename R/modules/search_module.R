@@ -1,6 +1,7 @@
-library(shiny)
 suppressWarnings(library(dplyr))
+suppressWarnings(library(arrow))
 
+source('R/modules/process_country_module.R')
 
 SearchUI <- function(id) {
   ns <- NS(id)
@@ -49,24 +50,37 @@ searchModule <- function(input, output, session, country_list) {
   
   # filtering data using search btn
   observeEvent(input$searchBtn, {
+    
     data <- country_data()
     req(data)
     searchTerm <- input$search_specie
-    req(searchTerm)
-    
-    if (nchar(searchTerm) == 0 | searchTerm == '') {
+
+    if (nchar(searchTerm) == 0 | searchTerm == "") {
+      
+      showModal(modalDialog(
+        title = tags$div(style = "color: white; background-color: #333; padding: 10px; border-radius: 5px;", "Error"),
+        tags$div(style = "color: white; background-color: #222; padding: 20px; border-radius: 5px;",
+                 "You have to choose one species"),
+        easyClose = TRUE,
+        footer = NULL
+      ))
+      
       filtered_data_reactive(NULL)
+      
       return(NULL)
+      
     }
     
+    req(searchTerm)
+    
     filtered_data <- data %>%
-      filter(grepl(searchTerm, scientificName, ignore.case = TRUE) | 
-               grepl(searchTerm, vernacularName, ignore.case = TRUE)) %>%
+      filter((scientificName == searchTerm | vernacularName == searchTerm)) %>%
       distinct(id, longitudeDecimal, latitudeDecimal, eventDate, scientificName, vernacularName, .keep_all = TRUE)
     
-    
     filtered_data_reactive(filtered_data)
+    
   })
   
   return(filtered_data_reactive)
+  
 }

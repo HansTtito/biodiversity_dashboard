@@ -1,6 +1,4 @@
-suppressWarnings(library(duckdb))
 suppressWarnings(library(arrow))
-
 
 process_country <- function(country_name) {
   
