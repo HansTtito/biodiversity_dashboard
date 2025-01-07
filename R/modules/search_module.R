@@ -30,7 +30,8 @@ searchModule <- function(input, output, session, country_list) {
   observe({
     updateSelectizeInput(session, "search_country", 
                          choices = country_list,
-                         selected = 'Poland')
+                         selected = 'Poland',
+                         server = TRUE)
   })
   
   # Read country data
@@ -45,7 +46,8 @@ searchModule <- function(input, output, session, country_list) {
     species_list <- unique(c('', country_data()$scientificName, country_data()$vernacularName))
     updateSelectizeInput(session, "search_specie", 
                          choices = species_list,
-                         selected = '')
+                         selected = '',
+                         server = TRUE)
   })
   
   # filtering data using search btn
@@ -60,7 +62,7 @@ searchModule <- function(input, output, session, country_list) {
       showModal(modalDialog(
         title = tags$div(style = "color: white; background-color: #333; padding: 10px; border-radius: 5px;", "Error"),
         tags$div(style = "color: white; background-color: #222; padding: 20px; border-radius: 5px;",
-                 "You have to choose one species"),
+                 "Please select one species."),
         easyClose = TRUE,
         footer = NULL
       ))
