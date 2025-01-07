@@ -22,9 +22,6 @@ timelineModule <- function(input, output, session, observations) {
       
     } else {
       
-      print(head(observations()))
-      print(unique(observations()$scientificName))
-      
       tagList(
         h2(paste0("Observation Timeline for ", unique(observations()$scientificName)), style = "color: white; text-align: center;"),
         plotlyOutput(ns("timeline"), height = "600px")
@@ -50,8 +47,7 @@ timelineModule <- function(input, output, session, observations) {
     output$timeline <- renderPlotly({
       
       req(filtered_data)
-      print(head(filtered_data))
-      
+
       plot_ly(
         filtered_data, 
         x = ~factor(observationDate), 
@@ -66,8 +62,8 @@ timelineModule <- function(input, output, session, observations) {
       ) %>%
         layout(
           title = list(
-            text = "",  # Vacío para evitar el título estándar
-            font = list(size = 16, color = "transparent"), # Hacer el título invisible
+            text = "",
+            font = list(size = 16, color = "transparent"),
             y = 0.97,
             x = 0.5,
             xanchor = "center",
