@@ -99,5 +99,25 @@ test_that("searchModuleServer handles empty species selection", {
 })
 
 
+test_that("searchModuleServer updates species list correctly", {
+  
+  testthat::with_mock(
+    "process_country" = mock_process_country,
+    
+    "updateSelectizeInput" = function(session, inputId, choices, selected, server) {
+      expect_equal(inputId, "search_specie")
+      expect_setequal(choices, c("", "SpecieA", "SpecieB", "SpecieC", "CommonNameA", "CommonNameB", "CommonNameC"))
+      expect_equal(selected, "")
+    },
+    
+    {
+      testServer(searchModuleServer, {
+        session$setInputs(search_country = "Germany")
+        session$flushReact()
+      })
+    }
+  )
+})
+
 
 
