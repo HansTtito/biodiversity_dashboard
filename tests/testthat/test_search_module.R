@@ -43,29 +43,36 @@ mock_process_country <- function(country_name) {
 }
 
 
-test_that("searchModuleServer handles basic search functionality", {
-  # Mock the process_country function in the test environment
+test_that("searchModuleServer updates data when country changes", {
   testthat::with_mock(
     "process_country" = mock_process_country,
     {
-      testServer(searchModuleServer, args = list(country_list = countries_list), {
-        # Test initial state
-        expect_null(session$getReturned()())
-        
-        # Test country selection and search
+      testServer(searchModuleServer, {
+        # Selección inicial: "Poland"
         session$setInputs(
           search_country = "Poland",
           search_specie = "Specie1",
-          searchBtn = TRUE
+          searchBtn = 1
         )
         
-        # Get the reactive result
+        # Verificar resultados para "Poland"
         result <- session$getReturned()()
-        
-        # Verify results
         expect_false(is.null(result))
         expect_equal(nrow(result), 1)
         expect_equal(result$scientificName, "Specie1")
+        
+        # Cambio a "Germany"
+        session$setInputs(
+          search_country = "Germany",
+          search_specie = "SpecieA",
+          searchBtn = 1
+        )
+        
+        # Verificar resultados para "Germany"
+        result <- session$getReturned()()
+        expect_false(is.null(result))
+        expect_equal(nrow(result), 1)
+        expect_equal(result$scientificName, "SpecieA")
       })
     }
   )
@@ -78,18 +85,19 @@ test_that("searchModuleServer handles empty species selection", {
   testthat::with_mock(
     "process_country" = mock_process_country,
     {
-      testServer(searchModuleServer, args = list(country_list = countries_list), {
-        # Test empty species search
+      testServer(searchModuleServer, {
         session$setInputs(
           search_country = "Poland",
           search_specie = "",
           searchBtn = 1
         )
         
-        # Verify null result for empty search
         expect_null(session$getReturned()())
       })
     }
   )
 })
+
+
+
 
