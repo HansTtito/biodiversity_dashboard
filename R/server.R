@@ -1,10 +1,10 @@
 
 server <- function(input, output, session) {
 
-  filtered_data_reactive <- callModule(searchModule, "search", country_list = countries_list)
+  filtered_data_reactive <- searchModuleServer('search')
   
-  callModule(mapModule, "map_or_message", observations = filtered_data_reactive)
+  mapModuleServer('map_or_message', observations = filtered_data_reactive)
   
-  callModule(timelineModule, "timeline_or_message", observations = filtered_data_reactive)
+  timelineModuleServer('timeline_or_message', observations = filtered_data_reactive)
   
 }
